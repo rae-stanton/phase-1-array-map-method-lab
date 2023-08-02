@@ -11,6 +11,16 @@ const tutorials = [
   'what is JSONP?'
 ];
 
+const specialWords = new Set(['API', 'JSONP', 'NaN', 'OO', 'StopPropagation', 'PreventDefault']);
+
+const capitalizeSpecialWord = (word) => {
+  return specialWords.has(word) ? word : word.charAt(0).toUpperCase() + word.slice(1);
+};
+
 const titleCased = () => {
-  return tutorials
-}
+  return tutorials.map((tutorial) => {
+    const words = tutorial.split(' ');
+    const titleCasedWords = words.map(capitalizeSpecialWord);
+    return titleCasedWords.join(' ');
+  });
+};
